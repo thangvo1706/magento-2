@@ -58,6 +58,7 @@ Default email template:
 > app/code/VENDOR/MODULE/view/frontend/email/email\_template.html
 
 ```markup
+<!--@subject {{trans "Email Subject"}}  @-->
 {{template config_path="design/email/header_template"}}
 
 //Detail here
@@ -146,7 +147,6 @@ class SendEmail extends \Magento\Framework\App\Helper\AbstractHelper
         );
     }
 
-
     /**
      * @return mixed
      */
@@ -216,7 +216,7 @@ class SendEmail extends \Magento\Framework\App\Helper\AbstractHelper
                     if (count($recipients) == 0) {
                         $result = array(
                             'type' => 'fail',
-                            'msg' => __('We can\'t process your request right now. Sorry, that\'s all we know.')
+                            'msg' => __('We can\'t send email right now. Sorry, that\'s all we know.')
                         );
                     } else {
                         foreach ($recipients as $recipient) {
@@ -250,7 +250,7 @@ class SendEmail extends \Magento\Framework\App\Helper\AbstractHelper
                     $this->inlineTranslation->resume();
                     $result = array(
                         'type' => 'fail',
-                        'msg' => __('We can\'t process your request right now. Sorry, that\'s all we know.')
+                        'msg' => __('We can\'t send email right now. Sorry, that\'s all we know.')
                     );
                 }
             } else {
